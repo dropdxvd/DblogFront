@@ -4,6 +4,9 @@ import App from './App'
 import './index.css'
 import { TonConnectUIProvider } from '@tonconnect/ui-react'
 
+import { Buffer } from 'buffer';
+window.Buffer = Buffer;
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <TonConnectUIProvider manifestUrl="https://dropdxvd.github.io/dblog-manifest/tonconnect-manifest.json">

@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface PostListProps {
   posts: { index: number; text: string }[];
 }

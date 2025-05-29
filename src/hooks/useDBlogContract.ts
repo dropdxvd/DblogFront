@@ -1,8 +1,11 @@
 import { useTonConnectUI, useTonWallet } from '@tonconnect/ui-react';
 import { useState } from 'react';
-import { beginCell, toNano, Address, Dictionary } from 'ton-core';
+import { beginCell, toNano, Address} from 'ton-core';
+import { Dictionary} from "@ton/core";
 import { TonClient } from '@ton/ton';
 import { getHttpEndpoint } from '@orbs-network/ton-access';
+
+
 
 const CONTRACT_ADDRESS = 'kQCnIAMJkhrwPMl8ucT3omASIGvFElx0DcXpjimVOyyE4DnP';
 
@@ -24,16 +27,15 @@ export function useDBlogContract() {
     
     const slice = result.stack.readCell().beginParse();
 
-    const dict = Dictionary.loadDirect(Dictionary.Keys.Int(257), {
-      parse: (src) => {
-        return { text: src.loadStringTail() };
-      }
-    }, slice);
+	const dict = Dictionary.loadDirect(Dictionary.Keys.Int(257), {
+		parse: (src) => ({ text: src.loadStringTail() }),
+			serialize: () => { throw new Error("Not implemented"); }
+	}, slice);
 
     const parsedPosts: { index: number; text: string }[] = [];
 
     for (const key of dict.keys()) {
-      const post = dict.get(key);
+      const post = dict.get(key) as { text: string };
       if (post) {
         parsedPosts.push({ index: Number(key), text: post.text });
       }

@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@orbs-network/ton-access": "^2.3.3",
+    "@stablelib/utf8": "^2.0.1",
+    "@ton/core": "^0.60.1",
     "@ton/ton": "^15.2.1",
     "@tonconnect/ui-react": "^2.1.0",
+    "process": "^0.11.10",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "ton": "^13.9.0",
-    "ton-core": "^0.53.0"
+    "ton": "^13.9.0"
   },
   "devDependencies": {
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
