@@ -1,13 +1,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import inject from '@rollup/plugin-inject';
 import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill';
+import inject from '@rollup/plugin-inject';
+
+import { fileURLToPath } from 'url';
 import path from 'path';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export default defineConfig({
-  plugins: [
-    react(),
-  ],
+  plugins: [react()],
   optimizeDeps: {
     esbuildOptions: {
       plugins: [
@@ -17,13 +20,13 @@ export default defineConfig({
       ],
     },
   },
+  define: {
+    global: 'window',
+  },
   resolve: {
     alias: {
       buffer: path.resolve(__dirname, 'node_modules/buffer/'),
     },
-  },
-  define: {
-    global: 'globalThis',
   },
   build: {
     rollupOptions: {

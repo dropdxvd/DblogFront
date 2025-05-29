@@ -5,7 +5,8 @@ import './index.css'
 import { TonConnectUIProvider } from '@tonconnect/ui-react'
 
 import { Buffer } from 'buffer';
-window.Buffer = Buffer;
+(window as any).Buffer = Buffer;
+
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
